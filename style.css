@@ -1,0 +1,431 @@
+/* --- Global Variables & Config --- */
+:root {
+    --primary: #8b0000;
+    --accent: #d4af37;
+    --dark: #1a1a1a;
+    --white: #ffffff;
+    --bg-light: #fdfaf5;
+    --shadow: 0 10px 30px rgba(0,0,0,0.1);
+    --ease: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* --- Document Reset --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- Utilities & Scrollbar --- */
+::selection { background: var(--primary); color: #fff; }
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+
+/* --- Base Layout Components --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: var(--ease);
+}
+
+.btn, .btn-card {
+    display: inline-block;
+    padding: 12px 25px;
+    background: var(--primary);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: var(--ease);
+}
+
+.btn:hover, .btn-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(139, 0, 0, 0.2);
+}
+
+/* --- Navigation & Header --- */
+.main-header {
+    background: #fff;
+    padding: 12px 0;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: var(--ease);
+    opacity: 1 !important;
+    overflow: hidden;
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand img {
+    height: 50px;
+    border-radius: 50%;
+}
+
+.brand-name {
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1rem;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 20px;
+    font-weight: 600;
+}
+
+.nav-menu a:hover {
+    color: var(--primary);
+}
+
+.nav-cta {
+    background: var(--primary);
+    color: #fff !important;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 5px;
+    font-size: 2.3rem;
+    justify-content: space-between;
+}
+
+.wa-icon { color: #25D366; }
+
+.mobile-menu-toggle {
+    display: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--primary);
+}
+
+/* --- Hero Banner Section --- */
+.hero-banner {
+    height: 85vh;
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/banner.jpg') center/cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    position: relative;
+}
+
+.hero-content h1 {
+    font-size: clamp(2rem, 5vw, 4rem);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.floating-btn {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+
+/* --- Generic Section Padding --- */
+.section-padding { padding: 80px 0; }
+
+.section-title {
+    text-align: center;
+    color: var(--primary);
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+}
+
+.click-hint {
+    text-align: center;
+    color: #777;
+    font-size: 0.9rem;
+    margin-bottom: 40px;
+}
+
+/* --- Featured Products Grid --- */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+}
+
+.product-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    text-align: center;
+    padding-bottom: 25px;
+    transition: var(--ease);
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.card-img-box img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 10px 0;
+}
+
+/* --- Infinite Marquee Slider --- */
+.blog-section {
+    padding: 60px 0;
+    overflow: hidden;
+    background: #fff;
+}
+
+.blog-container {
+    display: flex;
+    width: 100%;
+}
+
+.blog-rail {
+    display: flex;
+    width: calc(350px * 10);
+    animation: marquee 30s linear infinite;
+}
+
+.blog-rail:hover {
+    animation-play-state: paused;
+}
+
+.blog-card {
+    width: 320px;
+    margin: 0 15px;
+    background: var(--bg-light);
+    border-radius: 12px;
+    padding: 15px;
+}
+
+.blog-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-350px * 5)); }
+}
+
+/* --- Popup Modals --- */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-overlay:target { display: flex; }
+
+.modal-box {
+    background: #fff;
+    max-width: 800px;
+    width: 100%;
+    padding: 40px;
+    border-radius: 15px;
+    position: relative;
+    animation: slideUp 0.4s var(--ease);
+}
+
+.modal-close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 35px;
+    color: #333;
+}
+
+.modal-flex {
+    display: flex;
+    gap: 30px;
+}
+
+.m-img { flex: 1; }
+.m-img img { width: 100%; border-radius: 10px; }
+.m-text { flex: 1; text-align: left; }
+
+.ing-list {
+    background: var(--bg-light);
+    padding: 15px;
+    border-left: 4px solid var(--accent);
+    margin: 20px 0;
+}
+
+.read-mode {
+    max-height: 85vh;
+    overflow-y: auto;
+}
+
+.blog-hero {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* --- UI Animations --- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+@keyframes slideFromLeft {
+    0% { opacity: 0; transform: translateX(-100px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideFromRight {
+    0% { opacity: 0; transform: translateX(100px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade { animation: fadeIn 1s ease; }
+.animate-up { animation: slideUp 0.8s ease; }
+
+.brand {
+    opacity: 0;
+    animation: slideFromLeft 0.8s ease-out forwards;
+    animation-delay: 0.2s;
+}
+
+.navigation, .header-right {
+    opacity: 0;
+    animation: slideFromRight 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+/* --- Functional Helpers --- */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--primary);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: var(--ease);
+    border: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+#backToTop:hover {
+    background: var(--accent);
+    transform: scale(1.1);
+}
+
+/* --- Branding & Footer --- */
+.footer {
+    background: #111;
+    color: #ccc;
+    padding: 60px 0 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.footer-box h4 {
+    color: var(--accent);
+    margin-bottom: 20px;
+}
+
+.socials a {
+    font-size: 1.5rem;
+    margin-right: 15px;
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid #333;
+    margin-top: 40px;
+    padding-top: 20px;
+    font-size: 0.8rem;
+}
+
+/* --- Responsive Adaptations --- */
+@media (max-width: 768px) {
+    .nav-menu, .floating-btn { display: none; }
+    
+    .mobile-menu-toggle { display: block; }
+    
+    .nav-menu.active {
+        display: flex !important;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        padding: 20px;
+        box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+        border-top: 1px solid #eee;
+    }
+
+    .modal-flex { flex-direction: column; }
+    .modal-box { padding: 25px; }
+
+    .brand-name { font-size: 0.8rem; }
+    .hero-banner { height: 65vh; }
+    .card-img-box img { height: 200px; }
+}
